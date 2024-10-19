@@ -2,6 +2,7 @@
 import { inject } from "vue";
 import PlayerCard from "../components/cards/PlayerCard.vue";
 import Title from "../components/elements/Title.vue";
+import Menu from "../components/elements/Menu.vue";
 import ButtonOpen from "../components/ui/ButtonOpen.vue";
 
 const players = inject("players");
@@ -13,6 +14,8 @@ const deletePlayer = (id) => {
 
 <template>
   <Title text="Monopoly" />
+
+  <Menu/>
 
   <ul
     v-if="players.length > 0"
@@ -28,7 +31,7 @@ const deletePlayer = (id) => {
     </li>
   </ul>
 
-  <p class="text-xl text-center mb-5" v-else>Please, add a new players</p>
+  <p class="text-2xl text-center mb-5" v-else>Please, add a new players</p>
 
   <ButtonOpen>+</ButtonOpen>
 </template>

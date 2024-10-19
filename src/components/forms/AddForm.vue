@@ -15,9 +15,9 @@ const emits = defineEmits(["close-modal"]);
 const inputText = ref("");
 
 const addNewPlayer = () => {
-  players.value.push({
+  players.value.unshift({
     name: inputText.value,
-    cash: 15,
+    cash: 15000000,
     id: uuid(),
   });
   emits("close-modal");
@@ -26,7 +26,6 @@ const addNewPlayer = () => {
 </script>
 
 <template>
-  <div class="bg-white p-5 rounded">
     <h3 class="mb-5 text-center text-lg uppercase font-bold" v-if="title">
       {{ title }}
     </h3>
@@ -41,5 +40,4 @@ const addNewPlayer = () => {
       />
       <button class="bg-green-300 rounded text-white py-2">Add</button>
     </form>
-  </div>
 </template>

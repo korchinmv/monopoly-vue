@@ -20,6 +20,8 @@ const emits = defineEmits(["close-modal"]);
     >
       X
     </button>
-    <slot></slot>
+    <div class="bg-white p-5 rounded">
+      <slot></slot>
+    </div>
   </div>
 </template>
