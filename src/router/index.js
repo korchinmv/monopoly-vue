@@ -20,6 +20,7 @@ export const router = createRouter({
       path: "/player-details/:id",
       name: "player-details",
       component: PlayerDetails,
+      props: true,
     },
   ],
 });

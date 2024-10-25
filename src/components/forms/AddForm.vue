@@ -1,6 +1,6 @@
 <script setup>
 import { v4 as uuid } from "uuid";
-import { ref, inject } from "vue";
+import { ref, inject, defineProps } from "vue";
 
 const props = defineProps({
   title: {
@@ -26,18 +26,18 @@ const addNewPlayer = () => {
 </script>
 
 <template>
-    <h3 class="mb-5 text-center text-lg uppercase font-bold" v-if="title">
-      {{ title }}
-    </h3>
+  <h3 class="mb-5 text-center text-lg uppercase font-bold" v-if="title">
+    {{ title }}
+  </h3>
 
-    <form class="flex flex-col" @submit.prevent.stop="addNewPlayer" action="#">
-      <input
-        v-model="inputText"
-        class="mb-3 border px-5 py-2"
-        type="text"
-        placeholder="Player name"
-        required
-      />
-      <button class="bg-green-300 rounded text-white py-2">Add</button>
-    </form>
+  <form class="flex flex-col" @submit.prevent.stop="addNewPlayer" action="#">
+    <input
+      v-model="inputText"
+      class="mb-3 border px-5 py-2"
+      type="text"
+      placeholder="Player name"
+      required
+    />
+    <button class="bg-green-300 rounded text-white py-2">Add</button>
+  </form>
 </template>

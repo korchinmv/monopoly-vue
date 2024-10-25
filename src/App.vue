@@ -1,11 +1,15 @@
 <script setup>
-import { provide, ref } from "vue";
+import { provide, ref, computed } from "vue";
 import Header from "./components/elements/Header.vue";
 import Table from "./components/elements/Table.vue";
 import Modal from "./components/ui/Modal.vue";
 import AddForm from "./components/forms/AddForm.vue";
 
-const players = ref([{name: "Jhon", cash: 15000000, id:"1"}, {name: "Max", cash: 1500, id:"2"}, {name: "Zhan", cash: 35500, id:"3"}]);
+const players = ref([
+  { name: "Ivan", cash: 15000000, id: "1" },
+  { name: "Pavel", cash: 15000, id: "2" },
+  { name: "Marya", cash: 35500, id: "3" },
+]);
 
 const modalAddPlayerIsOpen = ref(false);
 const modalPlayersIsOpen = ref(false);
@@ -35,6 +39,19 @@ const closeAllModals = () => {
   modalHistoryIsOpen.value = false;
 };
 
+const addMoney = computed((playersList, playerId, num) => {
+  return (playersList.find((player) => player.id === playerId).cash += num);
+});
+
+const writeOffMoney = computed((playersList, playerId, num) => {
+  return (playersList.find((player) => player.id === playerId).cash -= num);
+});
+
+provide("moneyOperations", {
+  addMoney,
+  writeOffMoney,
+});
+
 provide("players", players);
 
 provide("modal", {
@@ -44,7 +61,6 @@ provide("modal", {
   openHistoryModal,
   closeAllModals,
 });
-
 </script>
 
 <template>
@@ -60,7 +76,7 @@ provide("modal", {
     </Modal>
 
     <Modal :modalIsOpen="modalPlayersIsOpen" @close-modal="closeAllModals">
-      <Table title="Players info"/>
+      <Table title="Players info" />
     </Modal>
 
     <Modal :modalIsOpen="modalTransfersIsOpen" @close-modal="closeAllModals">
